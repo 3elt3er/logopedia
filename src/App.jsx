@@ -4,18 +4,18 @@ import {useState} from "react";
 
 function App() {
   const [flowerList, setFlowerList] = useState([
-    {ref: React.createRef(), src: 'src/assets/klumba.png', id: 'klumba'},
-    {ref: React.createRef(), src: 'src/assets/fialka.png', id: 'fialka', value: true},
-    {ref: React.createRef(), src: 'src/assets/flox.png', id: 'flox', value: true},
-    {ref: React.createRef(), src: 'src/assets/gvozdika.png', id: 'gvozdika', value: false},
-    {ref: React.createRef(), src: 'src/assets/kalendula.png', id: 'kalendula', value: true},
-    {ref: React.createRef(), src: 'src/assets/kolokolchik.png', id: 'kolokolchik', value: true},
-    {ref: React.createRef(), src: 'src/assets/landish.png', id: 'landish', value: true},
-    {ref: React.createRef(), src: 'src/assets/lavanda.png', id: 'lavanda', value: true},
-    {ref: React.createRef(), src: 'src/assets/lutik.png', id: 'lutik', value: true},
-    {ref: React.createRef(), src: 'src/assets/oduvanchik.png', id: 'oduvanchik', value: false},
-    {ref: React.createRef(), src: 'src/assets/pion.png', id: 'pion', value: false},
-    {ref: React.createRef(), src: 'src/assets/tulpan.png', id: 'tulpan', value: true},
+    {ref: React.createRef(), src: 'public/imgs/klumba.png', id: 'klumba'},
+    {ref: React.createRef(), src: 'public/imgs/fialka.png', id: 'fialka', value: true},
+    {ref: React.createRef(), src: 'public/imgs/flox.png', id: 'flox', value: true},
+    {ref: React.createRef(), src: 'public/imgs/gvozdika.png', id: 'gvozdika', value: false},
+    {ref: React.createRef(), src: 'public/imgs/kalendula.png', id: 'kalendula', value: true},
+    {ref: React.createRef(), src: 'public/imgs/kolokolchik.png', id: 'kolokolchik', value: true},
+    {ref: React.createRef(), src: 'public/imgs/landish.png', id: 'landish', value: true},
+    {ref: React.createRef(), src: 'public/imgs/lavanda.png', id: 'lavanda', value: true},
+    {ref: React.createRef(), src: 'public/imgs/lutik.png', id: 'lutik', value: true},
+    {ref: React.createRef(), src: 'public/imgs/oduvanchik.png', id: 'oduvanchik', value: false},
+    {ref: React.createRef(), src: 'public/imgs/pion.png', id: 'pion', value: false},
+    {ref: React.createRef(), src: 'public/imgs/tulpan.png', id: 'tulpan', value: true},
   ])
   const [currentFlower, setCurrentFlower] = useState(null)
 
@@ -75,8 +75,7 @@ function App() {
       <h2 className='flowerName lutik'>Лютик</h2>
       <h2 className='flowerName tulpan'>Тюльпан</h2>
       <h2 className='flowerName oduvanchik'>Одуванчик</h2>
-      <img draggable={false} id='grass' src="src/assets/grass.jpg" alt="Задний фон травы"/>
-      <img draggable={false} id='klumba' src="src/assets/klumba.png" alt="Клумба"/>
+      <img draggable={false} id='grass' src="public/imgs/grass.jpg" alt="Задний фон травы"/>
       <div className='flowers'>
         {flowerList.map(flower =>
           <img
