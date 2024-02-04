@@ -1,27 +1,32 @@
 import './App.css'
 import React from "react";
 import {useState} from "react";
+import {useRef} from "react";
 
 function App() {
   const [flowerList, setFlowerList] = useState([
-    {ref: React.createRef(), src: 'public/imgs/klumba.png', id: 'klumba'},
-    {ref: React.createRef(), src: 'public/imgs/fialka.png', id: 'fialka', value: true},
-    {ref: React.createRef(), src: 'public/imgs/flox.png', id: 'flox', value: true},
-    {ref: React.createRef(), src: 'public/imgs/gvozdika.png', id: 'gvozdika', value: false},
-    {ref: React.createRef(), src: 'public/imgs/kalendula.png', id: 'kalendula', value: true},
-    {ref: React.createRef(), src: 'public/imgs/kolokolchik.png', id: 'kolokolchik', value: true},
-    {ref: React.createRef(), src: 'public/imgs/landish.png', id: 'landish', value: true},
-    {ref: React.createRef(), src: 'public/imgs/lavanda.png', id: 'lavanda', value: true},
-    {ref: React.createRef(), src: 'public/imgs/lutik.png', id: 'lutik', value: true},
-    {ref: React.createRef(), src: 'public/imgs/oduvanchik.png', id: 'oduvanchik', value: false},
-    {ref: React.createRef(), src: 'public/imgs/pion.png', id: 'pion', value: false},
-    {ref: React.createRef(), src: 'public/imgs/tulpan.png', id: 'tulpan', value: true},
+    {ref: React.createRef(), src: './imgs/klumba.png', id: 'klumba'},
+    {ref: React.createRef(), src: './imgs/fialka.png', id: 'fialka', value: true},
+    {ref: React.createRef(), src: './imgs/flox.png', id: 'flox', value: true},
+    {ref: React.createRef(), src: './imgs/gvozdika.png', id: 'gvozdika', value: false},
+    {ref: React.createRef(), src: './imgs/kalendula.png', id: 'kalendula', value: true},
+    {ref: React.createRef(), src: './imgs/kolokolchik.png', id: 'kolokolchik', value: true},
+    {ref: React.createRef(), src: './imgs/landish.png', id: 'landish', value: true},
+    {ref: React.createRef(), src: './imgs/lavanda.png', id: 'lavanda', value: true},
+    {ref: React.createRef(), src: './imgs/lutik.png', id: 'lutik', value: true},
+    {ref: React.createRef(), src: './imgs/oduvanchik.png', id: 'oduvanchik', value: false},
+    {ref: React.createRef(), src: './imgs/pion.png', id: 'pion', value: false},
+    {ref: React.createRef(), src: './imgs/tulpan.png', id: 'tulpan', value: true},
   ])
   const [currentFlower, setCurrentFlower] = useState(null)
 
   const [flowerIn, setFlowerIn] = useState([])
 
-  const [message, setMessage] = useState('Привет! Перетаскивай цветочки в клумбу.')
+  const [emoji, setEmoji] = useState('./imgs/startEmoji.png')
+
+  const [message, setMessage] = useState('Буква "Л"')
+
+  const ref = useRef(null)
 
   function dragStartHandler(e, flower) {
     e.target.style.transform = 'scale(1.06)'
@@ -57,14 +62,30 @@ function App() {
 
       // droppedFlower.ref.current.style.display = 'none';
       setMessage('Молодец!')
+      ref.current.style.background = 'green';
+      ref.current.style.left = '44vw';
+      setEmoji("./imgs/ok.png")
+      if (flowerIn.length === 6) {
+        setEmoji("./imgs/trophy.png")
+        setMessage('Победа!')
+        ref.current.style.background = 'gold';
+        setTimeout(()=> {
+          alert('ПОБЕДА! Спасибо за игру!')
+        }, 200)
+      }
     } else {
+      setEmoji('./imgs/notok.png')
       setMessage('Попробуй еще разок!')
+      ref.current.style.left = '40vw';
+      ref.current.style.background = 'red';
     }
   }
 
   return (
     <div className='mainPage'>
-      <h1 className='appHeader'>{message}</h1>
+      <img className='emoji' src={emoji} alt="Смайлик ответа" width='200px'/>
+      <h1 className='appHeader'>Перетаскивай цветочки в клумбу</h1>
+      <h1 className='message' ref={ref}>{message}</h1>
       <h2 className='flowerName fialka'>Фиалка</h2>
       <h2 className='flowerName pion'>Пион</h2>
       <h2 className='flowerName flox'>Флокс</h2>
@@ -75,7 +96,7 @@ function App() {
       <h2 className='flowerName lutik'>Лютик</h2>
       <h2 className='flowerName tulpan'>Тюльпан</h2>
       <h2 className='flowerName oduvanchik'>Одуванчик</h2>
-      <img draggable={false} id='grass' src="public/imgs/grass.jpg" alt="Задний фон травы"/>
+      <img draggable={false} id='grass' src="./imgs/grass.jpg" alt="Задний фон травы"/>
       <div className='flowers'>
         {flowerList.map(flower =>
           <img

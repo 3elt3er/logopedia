@@ -2,6 +2,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+h2 {
+    background: white;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+
+img {
+    user-select: none;
+
 }
 
 .mainPage {
@@ -11,11 +29,15 @@
 }
 
 .appHeader {
-    font-family: "Noto Sans Gothic", sans-serif;
     position: absolute;
-    width: 750px;
-    top: 10vh;
-    left: 31vw;
+    top: 6vh;
+    left: 34vw;
+}
+
+.message {
+    position: absolute;
+    top: 12vh;
+    left: 44vw;
 }
 
 #klumba {
@@ -26,7 +48,6 @@
     left: 32vw;
     z-index: 1;
 }
-
 .flowers {
     z-index: 10;
 }
@@ -48,43 +69,43 @@
 #flox {
     position: absolute;
     bottom: 14vh;
-    left: 20vw;
+    left: 24vw;
 }
 
 #gvozdika {
     position: absolute;
-    bottom: 12vh;
-    left: 30vw;
+    bottom: 10vh;
+    left: 32vw;
 }
 
 #kolokolchik {
     position: absolute;
-    bottom: 12vh;
-    left: 40vw;
+    bottom: 10vh;
+    left: 42vw;
 }
 
 #landish {
     position: absolute;
-    bottom: 12vh;
-    left: 50vw;
+    bottom: 10vh;
+    left: 52vw;
 }
 #lavanda {
     position: absolute;
-    bottom: 12vh;
-    left: 60vw;
+    bottom: 10vh;
+    left: 62vw;
 }
 
-#lutik {
+#pion {
     position: absolute;
     bottom: 14vh;
-    left: 70vw;
+    left: 72vw;
 }
 #oduvanchik {
     position: absolute;
     top: 6vh;
     left: 72vw;
 }
-#pion {
+#lutik {
     position: absolute;
     bottom: 46vh;
     left: 18vw;
@@ -102,41 +123,47 @@
 
 .flox {
     bottom: 10vh;
-    left: 20vw;
+    left: 24vw;
 }
 
 .gvozdika {
-    bottom: 8vh;
-    left: 30vw;
+    bottom: 6vh;
+    left: 32vw;
 }
 
 .kolokolchik {
-    bottom: 8vh;
+    bottom: 6vh;
     left: 40vw;
 }
 
 .landish {
-    bottom: 8vh;
-    left: 50vw;
+    bottom: 6vh;
+    left: 52vw;
 }
 .lavanda {
-    bottom: 8vh;
-    left: 60vw;
+    bottom: 6vh;
+    left: 62vw;
 }
 
-.lutik {
-    bottom: 8vh;
-    left: 70vw;
+.pion {
+    bottom: 10vh;
+    left: 72vw;
 }
 .oduvanchik {
     top: 20vh;
-    left: 72vw;
+    left: 70vw;
 }
-.pion {
+.lutik {
     bottom: 42vh;
     left: 18vw;
 }
 .tulpan {
     bottom: 42vh;
     left: 74vw;
+}
+
+.emoji {
+    position: absolute;
+    top: 8%;
+    left: 5%;
 }
