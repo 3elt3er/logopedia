@@ -5,22 +5,22 @@ import {useRef} from "react";
 
 function App() {
   const [flowerList, setFlowerList] = useState([
-    {ref: React.createRef(), src: './imgs/klumba.png', id: 'klumba'},
-    {ref: React.createRef(), src: './imgs/fialka.png', id: 'fialka', value: true},
-    {ref: React.createRef(), src: './imgs/flox.png', id: 'flox', value: true},
-    {ref: React.createRef(), src: './imgs/gvozdika.png', id: 'gvozdika', value: false},
-    {ref: React.createRef(), src: './imgs/kalendula.png', id: 'kalendula', value: true},
-    {ref: React.createRef(), src: './imgs/kolokolchik.png', id: 'kolokolchik', value: true},
-    {ref: React.createRef(), src: './imgs/landish.png', id: 'landish', value: true},
-    {ref: React.createRef(), src: './imgs/lavanda.png', id: 'lavanda', value: true},
-    {ref: React.createRef(), src: './imgs/lutik.png', id: 'lutik', value: true},
-    {ref: React.createRef(), src: './imgs/oduvanchik.png', id: 'oduvanchik', value: false},
-    {ref: React.createRef(), src: './imgs/pion.png', id: 'pion', value: false},
-    {ref: React.createRef(), src: './imgs/tulpan.png', id: 'tulpan', value: true},
+    {ref: React.createRef(), src: './imgs/klumba.png', id: 'klumba', draggable: false},
+    {ref: React.createRef(), src: './imgs/fialka.png', id: 'fialka', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/flox.png', id: 'flox', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/gvozdika.png', id: 'gvozdika', value: false, draggable: true},
+    {ref: React.createRef(), src: './imgs/kalendula.png', id: 'kalendula', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/kolokolchik.png', id: 'kolokolchik', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/landish.png', id: 'landish', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/lavanda.png', id: 'lavanda', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/lutik.png', id: 'lutik', value: true, draggable: true},
+    {ref: React.createRef(), src: './imgs/oduvanchik.png', id: 'oduvanchik', value: false, draggable: true},
+    {ref: React.createRef(), src: './imgs/pion.png', id: 'pion', value: false, draggable: true},
+    {ref: React.createRef(), src: './imgs/tulpan.png', id: 'tulpan', value: true, draggable: true},
   ])
   const [currentFlower, setCurrentFlower] = useState(null)
 
-  const [flowerIn, setFlowerIn] = useState([])
+  const [flowerIn, setFlowerIn] = useState(new Set([]))
 
   const [emoji, setEmoji] = useState('./imgs/startEmoji.png')
 
@@ -48,12 +48,11 @@ function App() {
   function dropHandler(e, flower) {
     e.preventDefault();
     e.target.style.transform = 'scale(1)';
+    const isFlowerInKlumba = flowerIn.has(flower.id)
 
-    const isFlowerInKlumba = flowerIn.some((item) => item.id === flower.id )
-
-    if (currentFlower.value && ( flower.id === 'klumba' || isFlowerInKlumba)) {
+    if ((flower.id === 'klumba' || isFlowerInKlumba) && currentFlower.value === true) {
+      flowerIn.add(currentFlower.id)
       const updatedFlowerList = [...flowerIn, currentFlower];
-      setFlowerIn(updatedFlowerList);
       const droppedFlower = updatedFlowerList.find(item => item.id === currentFlower.id);
       droppedFlower.ref.current.style.top = e.clientY - 70 + 'px';
       droppedFlower.ref.current.style.left = e.clientX - 60 + 'px';
@@ -65,7 +64,7 @@ function App() {
       ref.current.style.background = 'green';
       ref.current.style.left = '44vw';
       setEmoji("./imgs/ok.png")
-      if (flowerIn.length === 6) {
+      if (flowerIn.size === 7) {
         setEmoji("./imgs/trophy.png")
         setMessage('Победа!')
         ref.current.style.background = 'gold';
@@ -106,7 +105,7 @@ function App() {
             src={flower.src}
             alt={flower.id}
             key={flower.id}
-            draggable={true}
+            draggable={flower.draggable}
             onDragStart={(e) => dragStartHandler(e, flower)}
             onDragLeave={(e) => dragEndHandler(e)}
             onDragEnd={(e) => dragEndHandler(e)}
